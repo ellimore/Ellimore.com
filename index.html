@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#09070f">
+  <title>Ellimor — Script Control Center</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" aria-label="Ellimor home">
+        <span class="brand-mark">E</span><span>ellimor<span class="brand-dot">.</span></span>
+      </a>
+      <div class="workspace-label">WORKSPACE</div>
+      <button class="workspace-picker"><span class="workspace-avatar">E</span><span><b>Ellimor Studio</b><small>Free workspace</small></span><span class="chevron">⌄</span></button>
+      <nav class="nav">
+        <button class="nav-item active" data-page="overview"><span>▦</span> Overview</button>
+        <button class="nav-item" data-page="projects"><span>⌘</span> Projects</button>
+        <button class="nav-item" data-page="files"><span>▤</span> Script files</button>
+        <button class="nav-item" data-page="releases"><span>⇧</span> Releases</button>
+        <button class="nav-item" data-page="discord"><span>◉</span> Discord bot</button>
+        <button class="nav-item" data-page="plans"><span>◇</span> Plans & access</button>
+        <button class="nav-item" data-page="settings"><span>⚙</span> Settings</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="usage-card"><div class="usage-head"><span>Free plan</span><span class="pill">ACTIVE</span></div><div class="usage-meter"><span></span></div><small>Demo workspace · 1 of 3 projects</small><button class="text-button" data-page="plans">Explore plans ↗</button></div>
+        <div class="user-row"><div class="user-avatar">Y</div><div><b>Your account</b><small>Local demo mode</small></div><button class="icon-button" title="Account menu">•••</button></div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobileMenu" aria-label="Open menu">☰</button>
+        <div class="breadcrumbs">Workspace <span>/</span> <b id="crumb">Overview</b></div>
+        <div class="top-actions"><span class="demo-chip"><i></i> DEMO MODE</span><button class="icon-button" id="helpBtn" title="Help">?</button><button class="primary small" data-page="projects">＋ New project</button></div>
+      </header>
+      <div class="content">
+        <section class="page active" id="page-overview">
+          <div class="page-heading"><div><div class="eyebrow">WORKSPACE OVERVIEW</div><h1>Good to see you again<span class="purple">.</span></h1><p>Manage your authorized Lua projects from one place.</p></div><div class="heading-actions"><button class="secondary" id="exportBtn">↓ Export demo data</button><button class="primary" data-page="projects">＋ Create project</button></div></div>
+          <div class="stat-grid">
+            <article class="stat-card"><div class="stat-label">Total projects <span class="stat-icon">⌘</span></div><div class="stat-number" id="projectCount">1</div><div class="stat-note"><span class="positive">Free plan</span> · up to 3 projects</div></article>
+            <article class="stat-card"><div class="stat-label">Script files <span class="stat-icon">▤</span></div><div class="stat-number" id="fileCount">2</div><div class="stat-note">Stored in this browser demo</div></article>
+            <article class="stat-card"><div class="stat-label">Published releases <span class="stat-icon">⇧</span></div><div class="stat-number" id="releaseCount">1</div><div class="stat-note">Version history preview</div></article>
+            <article class="stat-card"><div class="stat-label">Discord connection <span class="stat-icon">◉</span></div><div class="stat-number status-number">Not linked</div><div class="stat-note">Connect a bot when backend is configured</div></article>
+          </div>
+          <div class="two-col">
+            <section class="panel"><div class="panel-heading"><div><h2>Your projects</h2><p>Recent projects in this workspace</p></div><button class="text-button" data-page="projects">View all →</button></div><div id="recentProjects" class="project-list"></div></section>
+            <section class="panel"><div class="panel-heading"><div><h2>Quick actions</h2><p>Pick up where you left off</p></div></div><div class="quick-actions"><button class="quick-action" data-action="new-project"><span class="quick-icon">＋</span><span><b>Create a project</b><small>Start a new authorized script project</small></span><span class="arrow">↗</span></button><button class="quick-action" data-page="files"><span class="quick-icon">↑</span><span><b>Add a script file</b><small>Import a .lua or .txt file locally</small></span><span class="arrow">↗</span></button><button class="quick-action" data-page="discord"><span class="quick-icon">◉</span><span><b>Set up Discord</b><small>See bot setup instructions</small></span><span class="arrow">↗</span></button></div></section>
+          </div>
+          <section class="panel activity-panel"><div class="panel-heading"><div><h2>Recent activity</h2><p>Activity in this demo workspace</p></div><span class="muted">Just now</span></div><div class="activity-row"><span class="activity-dot violet"></span><div><b>Welcome to Ellimor</b><small>Your demo workspace is ready to explore.</small></div><time>Now</time></div><div class="activity-row"><span class="activity-dot green"></span><div><b>Sample project created</b><small>Starter Lua project added to your workspace.</small></div><time>Earlier</time></div></section>
+          <div class="notice"><span class="notice-icon">✦</span><div><b>Local demo, no account or server required</b><p>Changes stay in this browser. Real sign-in, uploads, Discord OAuth, payments, and secure script delivery need a backend before launch.</p></div></div>
+        </section>
+
+        <section class="page" id="page-projects">
+          <div class="page-heading"><div><div class="eyebrow">WORKSPACE</div><h1>Projects<span class="purple">.</span></h1><p>Organize projects for software and Roblox experiences you control.</p></div><button class="primary" id="newProjectBtn">＋ New project</button></div>
+          <div class="toolbar"><div class="search-box"><span>⌕</span><input id="projectSearch" placeholder="Search projects…" aria-label="Search projects"></div><span class="muted" id="projectSummary">1 project</span></div>
+          <div class="project-grid" id="allProjects"></div>
+        </section>
+
+        <section class="page" id="page-files">
+          <div class="page-heading"><div><div class="eyebrow">PROJECT WORKSPACE</div><h1>Script files<span class="purple">.</span></h1><p>Import and inspect files locally. This demo never executes uploaded code.</p></div><button class="primary" id="uploadBtn">↑ Import file</button><input type="file" id="fileInput" accept=".lua,.txt,.luau,.json" hidden></div>
+          <div class="notice"><span class="notice-icon">ⓘ</span><div><b>Safe file management preview</b><p>Files are kept in browser memory/local storage as metadata only. For production, store uploads on a server with access checks and size limits.</p></div></div>
+          <section class="panel table-panel"><div class="panel-heading"><div><h2>File library</h2><p>Demo metadata and sample files</p></div><span class="pill">LOCAL ONLY</span></div><div class="table-wrap"><table><thead><tr><th>FILE</th><th>PROJECT</th><th>SIZE</th><th>UPDATED</th><th></th></tr></thead><tbody id="filesTable"></tbody></table></div></section>
+          <section class="panel editor-panel"><div class="panel-heading"><div><h2>File preview</h2><p id="previewName">Select a file to preview its metadata</p></div><span class="pill">NO EXECUTION</span></div><pre id="filePreview">-- Choose a file from the library to view its preview.</pre></section>
+        </section>
+
+        <section class="page" id="page-releases">
+          <div class="page-heading"><div><div class="eyebrow">VERSION CONTROL</div><h1>Releases<span class="purple">.</span></h1><p>Track versions and prepare release notes for authorized projects.</p></div><button class="primary" id="newReleaseBtn">＋ New release</button></div>
+          <section class="panel"><div class="panel-heading"><div><h2>Release history</h2><p>Sample release records</p></div></div><div id="releaseList"></div></section>
+        </section>
+
+        <section class="page" id="page-discord">
+          <div class="page-heading"><div><div class="eyebrow">COMMUNITY INTEGRATION</div><h1>Discord bot<span class="purple">.</span></h1><p>Connect a Discord app to manage roles and plan access.</p></div><span class="pill warning">NOT CONNECTED</span></div>
+          <div class="discord-hero"><div class="discord-logo">◉</div><div class="discord-copy"><div class="eyebrow">ELLIMOR BOT</div><h2>Your server, connected to your workspace.</h2><p>When configured, the bot can verify subscriptions, assign roles, and provide project links. Never paste your bot token into this page.</p><a class="primary link-button" href="https://discord.com/developers/applications" target="_blank" rel="noreferrer">Open Discord Developer Portal ↗</a></div></div>
+          <div class="two-col">
+            <section class="panel"><div class="panel-heading"><div><h2>Setup checklist</h2><p>Complete these steps on the backend</p></div></div><div class="check-list"><label><input type="checkbox"> Create an application and bot</label><label><input type="checkbox"> Store the bot token as a server environment variable</label><label><input type="checkbox"> Configure OAuth redirect URL</label><label><input type="checkbox"> Add server ID and role mapping</label><label><input type="checkbox"> Test plan verification and role sync</label></div></section>
+            <section class="panel"><div class="panel-heading"><div><h2>Planned commands</h2><p>Example commands for the production bot</p></div></div><div class="command-row"><code>/link</code><span>Link your Ellimor account</span></div><div class="command-row"><code>/plan</code><span>Check your active plan</span></div><div class="command-row"><code>/project</code><span>Show project information</span></div><div class="command-row"><code>/sync-role</code><span>Refresh a verified plan role</span></div></section>
+          </div>
+          <div class="notice"><span class="notice-icon">🔒</span><div><b>Security note</b><p>The bot is not live in this static demo. Keep Discord secrets server-side; use Discord OAuth and verify guild permissions before syncing roles.</p></div></div>
+        </section>
+
+        <section class="page" id="page-plans">
+          <div class="page-heading"><div><div class="eyebrow">BILLING & ACCESS</div><h1>Plans & access<span class="purple">.</span></h1><p>Preview plan limits. No real payments are collected in this demo.</p></div><span class="pill">FREE STARTER</span></div>
+          <div class="pricing-grid">
+            <article class="price-card selected"><div class="price-label">STARTER</div><h2>Free</h2><p>For testing your workflow</p><div class="price">$0 <small>/ forever</small></div><ul><li>✓ 3 projects</li><li>✓ Local file metadata</li><li>✓ Demo releases</li><li>✓ Setup guide</li></ul><button class="secondary full" disabled>Current demo plan</button></article>
+            <article class="price-card"><div class="price-label">CREATOR</div><h2>Creator</h2><p>For growing projects</p><div class="price">$— <small>/ month</small></div><ul><li>✓ More projects</li><li>✓ Server-side file storage</li><li>✓ Version history</li><li>✓ Discord role sync</li></ul><button class="secondary full" id="creatorBtn">Coming later</button></article>
+            <article class="price-card featured"><div class="popular">PLANNED</div><div class="price-label">STUDIO</div><h2>Studio</h2><p>For teams and communities</p><div class="price">$— <small>/ month</small></div><ul><li>✓ Team permissions</li><li>✓ Audit logs</li><li>✓ API access</li><li>✓ Priority support</li></ul><button class="primary full" id="studioBtn">Coming later</button></article>
+          </div>
+          <p class="fine-print">Plans shown are placeholders, not offers for sale. Add a payment provider only after the backend and terms are ready.</p>
+        </section>
+
+        <section class="page" id="page-settings">
+          <div class="page-heading"><div><div class="eyebrow">PREFERENCES</div><h1>Settings<span class="purple">.</span></h1><p>Manage local demo preferences and workspace information.</p></div></div>
+          <section class="panel settings-panel"><div class="setting-row"><div><b>Workspace name</b><small>Shown in the sidebar</small></div><input id="workspaceName" value="Ellimor Studio" maxlength="40"><button class="secondary" id="saveWorkspace">Save</button></div><div class="setting-row"><div><b>Appearance</b><small>Ellimor's signature theme</small></div><span class="pill">Black & purple</span></div><div class="setting-row"><div><b>Demo data</b><small>Reset projects, files and releases in this browser</small></div><button class="danger-button" id="resetBtn">Reset demo</button></div></section>
+        </section>
+      </div>
+      <footer><span>© 2026 Ellimor</span><span>Built for projects you control <i>•</i> <a href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a></span></footer>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <dialog id="projectDialog"><form method="dialog" id="projectForm"><div class="dialog-head"><div><div class="eyebrow">NEW WORKSPACE PROJECT</div><h2>Create project</h2></div><button class="icon-button" value="cancel" aria-label="Close">×</button></div><label class="field-label">Project name<input id="projectName" required maxlength="60" placeholder="e.g. My Roblox experience"></label><label class="field-label">Project type<select id="projectType"><option>Roblox Studio</option><option>Standalone Lua</option><option>General Lua library</option></select></label><label class="field-label">Description<textarea id="projectDescription" rows="3" maxlength="200" placeholder="What does this project do?"></textarea></label><div class="dialog-actions"><button class="secondary" value="cancel">Cancel</button><button class="primary" id="createProject" value="default">Create project</button></div></form></dialog>
+  <dialog id="releaseDialog"><form method="dialog" id="releaseForm"><div class="dialog-head"><div><div class="eyebrow">VERSION CONTROL</div><h2>New release</h2></div><button class="icon-button" value="cancel" aria-label="Close">×</button></div><label class="field-label">Release version<input id="releaseVersion" required placeholder="v1.0.1"></label><label class="field-label">Project<select id="releaseProject"></select></label><label class="field-label">Release notes<textarea id="releaseNotes" rows="3" placeholder="What changed?"></textarea></label><div class="dialog-actions"><button class="secondary" value="cancel">Cancel</button><button class="primary" id="createRelease" value="default">Save release</button></div></form></dialog>
+  <dialog id="helpDialog"><form method="dialog"><div class="dialog-head"><h2>Ellimor demo help</h2><button class="icon-button" value="cancel">×</button></div><p class="muted">This is an interactive front-end demo. It stores demo data in your browser and does not connect to a server, execute Lua, authenticate users, or process payments.</p><div class="help-links"><a href="https://pages.github.com/" target="_blank" rel="noreferrer">Free static hosting guide ↗</a><a href="https://discord.com/developers/docs/intro" target="_blank" rel="noreferrer">Discord developer docs ↗</a></div><div class="dialog-actions"><button class="primary" value="cancel">Got it</button></div></form></dialog>
+  <script src="app.js"></script>
+</body>
+</html>
