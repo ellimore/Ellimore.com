@@ -1,0 +1,16 @@
+{
+  "name": "ellimore-discord-bot",
+  "version": "1.0.0",
+  "description": "Ellimore license bot for software you own or are authorized to manage",
+  "main": "bot/index.js",
+  "scripts": {
+    "start": "node bot/index.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "discord.js": "^14.21.0",
+    "dotenv": "^16.4.7"
+  }
+}
